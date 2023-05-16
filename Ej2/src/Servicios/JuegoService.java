@@ -40,25 +40,50 @@ public class JuegoService {
      * @param r
      */
     public void ronda(ArrayList<Jugador> jugadores, Revolver r) {
-        Jugador jugadorMojado = null;
         llenarRevolver(r);
-        do {
+        int contador = 1;
+        boolean jugadorMojado = false;
+        /*
+        for (Jugador jugador : jugadores) {
+            System.out.println("Ronda #" + contador);
+            contador++;
+            System.out.println(toString(r));
+            disparo(r, jugador);
+            if (jugador.isMojado()) {
+                System.out.println("el jugador mojado es: " + jugador.getNombre());
+                break;
+            }
 
+        }
+         */
+
+        do {
             for (Jugador jugador : jugadores) {
-                
+                System.out.println("Ronda #" + contador);
+                contador++;
                 System.out.println(toString(r));
                 disparo(r, jugador);
                 if (jugador.isMojado()) {
-                    jugadorMojado = jugador;
+                    System.out.println("el jugador mojado es: " + jugador.getNombre());
+                    jugadorMojado = true;
                     break;
                 }
-                
             }
+        } while (!jugadorMojado);
 
-        } while (!jugadorMojado.isMojado());
-        
-        System.out.println("el jugador mojado es: "+jugadorMojado.getNombre());
+        /*
+        for (int i = 0; i < 6; i++) {
 
+            Jugador jugadorActual = jugadores.get(i);
+            System.out.println("Ronda #" + (i + 1));
+            System.out.println(toString(r));
+            disparo(r, jugadorActual);
+            if (jugadorActual.isMojado()) {
+                System.out.println("el jugador mojado es: " + jugadorActual.getNombre());
+                return;
+            }
+        }
+         */
     }
 
     /**
@@ -93,6 +118,7 @@ public class JuegoService {
     public String toString(Revolver r) {
         return "Posicion actual: " + r.getPosicionActual() + ""
                 + "\nPosicion del agua: " + r.getPosicionAgua();
+
     }
 
     /**
@@ -114,6 +140,5 @@ public class JuegoService {
         }
         siguienteChorro(r);
     }
-    
-    
+
 }
