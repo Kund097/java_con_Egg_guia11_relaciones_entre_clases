@@ -9,18 +9,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * • barajar(): cambia de posición todas las cartas aleatoriamente. •
- * siguienteCarta(): devuelve la siguiente carta que está en la baraja, cuando
- * no haya más o se haya llegado al final, se indica al usuario que no hay más
- * cartas. • cartasDisponibles(): indica el número de cartas que aún se puede
- * repartir. • darCartas(): dado un número de cartas que nos pidan, le
- * devolveremos ese número de cartas. En caso de que haya menos cartas que las
- * pedidas, no devolveremos nada, pero debemos indicárselo al usuario. •
- * cartasMonton(): mostramos aquellas cartas que ya han salido, si no ha salido
- * ninguna indicárselo al usuario • mostrarBaraja(): muestra todas las cartas
- * hasta el final. Es decir, si se saca una carta y luego se llama al método,
- * este no mostrara esa primera carta.
- *
  * @author facun
  */
 public class CartaService {
@@ -65,6 +53,9 @@ public class CartaService {
      */
     public void cartasDisponibles(ArrayList<Carta> mazo) {
         System.out.println("Cartas disponibles: " + mazo.size());
+        for (Carta carta : mazo) {
+            System.out.println(carta);
+        }
     }
 
     /**
@@ -80,7 +71,7 @@ public class CartaService {
         ArrayList<Carta> cartasADar = new ArrayList<>();
         System.out.println("cuantas cartas queres?");
         int cantCartas = input.nextInt();
-        if (cantCartas < mazo.size()) {
+        if (cantCartas <= mazo.size()) {
             cartasADar.addAll(mazo.subList(0, cantCartas));
             monton.addAll(mazo.subList(0, cantCartas));
             mazo.removeAll(mazo.subList(0, cantCartas));
@@ -114,7 +105,11 @@ public class CartaService {
      * @param mazo
      */
     public void mostrarBaraja(ArrayList<Carta> mazo) {
-        System.out.println("Baraja: " + mazo.toString());
+        if (mazo.isEmpty()) {
+            System.out.println("No hay mas cartas");
+        }else {
+            System.out.println("Baraja: " + mazo.toString());
+        }
     }
 
     public ArrayList<Carta> cargarMazo() {
@@ -142,10 +137,11 @@ public class CartaService {
         do {
             System.out.println("-----MENU-----\n"
                     + "\n1-Barajar"
-                    + "\n2-Dar Cartas"
-                    + "\n3-Siguiente carta"
-                    + "\n4-Cartas del monton"
-                    + "\n5-Mostrar baraja"
+                    + "\n2-Cartas disponibles"
+                    + "\n3-Dar Cartas"
+                    + "\n4-Siguiente carta"
+                    + "\n5-Cartas del monton"
+                    + "\n6-Mostrar baraja"
                     + "\n0-Para salir");
             op = input.nextInt();
             switch (op) {
@@ -153,15 +149,18 @@ public class CartaService {
                     barajar(mazo);
                     break;
                 case 2:
-                    darCartas(mazo, monton);
+                    cartasDisponibles(mazo);
                     break;
                 case 3:
-                    siguienteCarta(mazo, monton);
+                    darCartas(mazo, monton);
                     break;
                 case 4:
-                    cartasMonton(monton);
+                    siguienteCarta(mazo, monton);
                     break;
                 case 5:
+                    cartasMonton(monton);
+                    break;
+                case 6:
                     mostrarBaraja(mazo);
                     break;
                 case 0:
