@@ -59,5 +59,6 @@ public class Perro {
     public String toString() {
         return "Perro{" + "nombre=" + nombre + ", raza=" + raza + ", edad=" + edad + ", tamanio=" + tamanio + '}';
     }
+   
     
 }
