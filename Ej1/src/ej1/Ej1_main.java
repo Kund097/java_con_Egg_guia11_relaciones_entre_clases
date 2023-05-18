@@ -1,5 +1,8 @@
 package ej1;
 
+import Entidades.Perro;
+import Entidades.Persona;
+
 public class Ej1_main {
 
     /**
@@ -13,7 +16,14 @@ public class Ej1_main {
 
     public static void main(String[] args) {
 
-        
+        Persona persona1 = new Persona();
+        Persona persona2 = new Persona();
+        Perro perro1 = new Perro();
+        Perro perro2 = new Perro();
+        persona1.setMascota(perro2);
+        persona2.setMascota(perro1);
+        System.out.println(persona1);
+        System.out.println(persona2);
         
     }
 
