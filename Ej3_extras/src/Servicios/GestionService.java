@@ -93,8 +93,21 @@ public class GestionService {
         
     }
     
+    public void mostrarPolizas(ArrayList<Poliza>polizas) {
+        
+        for (Poliza poliza : polizas) {
+            System.out.println(poliza);
+        }
+        
+    }
     
-    
+    public void mostrarClientes(ArrayList<Cliente> clientes) {
+        
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente);
+        }
+        
+    }
        
     
     
@@ -107,7 +120,7 @@ public class GestionService {
         Vehiculo nuevoVehiculo = null;
         Cliente nuevoCliente = null;
         Poliza nuevaPoliza = null;
-        final String OPCION_SALIR = "\n6-Terminar";
+        final String OPCION_SALIR = "\n0-Terminar";
         final int SALIR = 0;
         int op;
         do {
@@ -118,6 +131,8 @@ public class GestionService {
                     + "\n3-Cargar Cliente a la lista"
                     + "\n4-Cargar poliza"
                     + "\n5-Cargar nueva cuota"
+                    + "\n6-Mostrar polizas"
+                    + "\n7-Mostrar clientes"
                     +OPCION_SALIR);
             op = input.nextInt();
             switch (op) {
@@ -149,6 +164,12 @@ public class GestionService {
                     break;
                 case 5:
                     asignarNuevaCuota(polizas);
+                    break;
+                case 6:
+                    mostrarPolizas(polizas);
+                    break;
+                case 7:
+                    mostrarClientes(clientes);
                     break;
                 case SALIR:
                     
